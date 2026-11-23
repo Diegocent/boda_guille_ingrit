@@ -225,7 +225,6 @@ function Itinerary() {
         <h2 className="text-center font-serif text-sm uppercase tracking-[0.32em] text-[#4F6F52]">
           Itinerario
         </h2>
-        <p className="mt-4 text-center font-script text-3xl text-[#6F8F74]">El día a día</p>
         <ol className="relative mx-auto mt-12 max-w-xs space-y-8">
           <div className="absolute bottom-3 left-[4.85rem] top-3 w-px bg-[#4F6F52]/20" />
           {ITINERARY.map((item) => (
@@ -258,8 +257,8 @@ function Venue() {
       </Reveal>
       <Reveal delay={0.12} className="mt-10">
         <img
-          src="/floral/baby-breath.jpg"
-          alt="Ambiente de la celebración"
+          src="/floral/venue.jpg"
+          alt="Alianzas"
           className="mx-auto h-56 w-full max-w-sm rounded-sm object-cover shadow-[0_16px_40px_rgba(47,70,52,0.18)]"
         />
       </Reveal>
