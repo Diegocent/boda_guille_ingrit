@@ -1,89 +1,104 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { COUPLE } from "@/lib/constants";
-import { GypsophilaSprig } from "./Gypsophila";
+import { EucalyptusLeaf, GypsophilaSprig, SectionOrnament } from "./Decorations";
 
 type EnvelopeOverlayProps = {
   onOpened: () => void;
 };
 
 export function EnvelopeOverlay({ onOpened }: EnvelopeOverlayProps) {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(true);
   const [opening, setOpening] = useState(false);
   const busy = useRef(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const open = useCallback(() => {
     if (busy.current) return;
     busy.current = true;
     setOpening(true);
     onOpened();
-    window.setTimeout(() => setVisible(false), 900);
+    window.setTimeout(() => setVisible(false), 950);
   }, [onOpened]);
 
-  if (!visible) return null;
+  if (!mounted || !visible) return null;
 
-  return (
+  return createPortal(
     <motion.div
-      className={`fixed inset-x-0 top-0 z-50 mx-auto flex h-[100dvh] w-full max-w-md items-center justify-center bg-[#E7EEE6] px-5 ${
+      className={`fixed inset-0 z-[120] flex items-center justify-center overflow-hidden bg-[#E4EDE2]/95 px-5 ${
         opening ? "pointer-events-none" : ""
       }`}
       animate={opening ? { opacity: 0 } : { opacity: 1 }}
-      transition={{ duration: 0.45, delay: opening ? 0.35 : 0, ease: [0.4, 0, 0.2, 1] }}
+      transition={{ duration: 0.45, delay: opening ? 0.4 : 0, ease: [0.4, 0, 0.2, 1] }}
     >
+      <img
+        src="/floral/baby-breath.jpg"
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-[#E4EDE2]/55" />
+
       <button
         type="button"
         onClick={open}
         aria-label="Abrir invitación"
-        className="relative w-full max-w-[340px] text-left"
+        className="relative w-full max-w-[350px] text-left"
       >
-        <GypsophilaSprig className="pointer-events-none absolute -left-6 -top-10 z-20 w-28 opacity-90" />
-        <GypsophilaSprig
-          mirror
-          className="pointer-events-none absolute -bottom-8 -right-4 z-20 w-32 opacity-90"
-        />
+        <GypsophilaSprig className="absolute -left-8 -top-12 z-30 h-40 w-28" />
+        <GypsophilaSprig mirror className="absolute -bottom-10 -right-6 z-30 h-44 w-32" delay={0.35} />
+        <EucalyptusLeaf className="absolute -right-2 top-20 z-30 h-24 w-14" delay={0.2} />
 
-        <div className="relative overflow-hidden rounded-sm bg-[#F8FBF7] shadow-[0_18px_40px_rgba(47,61,49,0.18)]">
+        <div className="relative overflow-hidden rounded-sm bg-[#F7FAF4] shadow-[0_22px_50px_rgba(47,70,52,0.22)]">
           <div className="paper-grain pointer-events-none absolute inset-0" />
+          <img
+            src="/floral/baby-breath-green.jpg"
+            alt=""
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12]"
+          />
 
           <motion.div
             className="relative z-10 origin-top"
-            animate={opening ? { rotateX: -150, opacity: 0.35 } : { rotateX: 0, opacity: 1 }}
-            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            animate={opening ? { rotateX: -155, opacity: 0.25 } : { rotateX: 0, opacity: 1 }}
+            transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
             style={{ transformStyle: "preserve-3d", perspective: 900 }}
           >
             <div
-              className="relative h-[88px] bg-[#D6E4D4]"
-              style={{
-                clipPath: "polygon(0 0, 100% 0, 50% 100%)",
-              }}
+              className="relative h-[96px] bg-gradient-to-b from-[#C9DBC8] to-[#AFC9AE]"
+              style={{ clipPath: "polygon(0 0, 100% 0, 50% 100%)" }}
             >
-              <div className="absolute left-1/2 top-[58%] flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#3A5340] shadow-md">
-                <span className="font-script text-lg leading-none text-[#F8FBF7]">&</span>
+              <div className="absolute left-1/2 top-[58%] flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#2F4634] shadow-lg ring-4 ring-[#F7FAF4]/35">
+                <span className="font-script text-xl leading-none text-[#F7FAF4]">&</span>
               </div>
             </div>
           </motion.div>
 
-          <div className="relative z-0 px-8 pb-10 pt-8 text-center">
-            <p className="font-serif text-[11px] uppercase tracking-[0.32em] text-[#7A9A7E]">
+          <div className="relative z-0 px-8 pb-11 pt-9 text-center">
+            <p className="font-serif text-[11px] uppercase tracking-[0.34em] text-[#6F8F74]">
               Una invitación para ustedes
             </p>
-            <h1 className="mt-5 font-script text-[2.7rem] leading-none text-[#4F6F52]">
+            <SectionOrnament />
+            <h1 className="mt-6 font-script text-[3rem] leading-none text-[#4F6F52]">
               {COUPLE.first}
             </h1>
-            <p className="my-1 font-script text-3xl text-[#4F6F52]">&</p>
-            <h1 className="font-script text-[2.7rem] leading-none text-[#4F6F52]">
+            <p className="my-1 font-script text-3xl text-[#6F8F74]">&</p>
+            <h1 className="font-script text-[3rem] leading-none text-[#4F6F52]">
               {COUPLE.second}
             </h1>
-            <p className="mt-5 font-serif text-base text-[#7A9A7E]">{COUPLE.dateLabel}</p>
-
-            <span className="mt-8 inline-block border-b border-[#3A5340] pb-1 font-serif text-sm uppercase tracking-[0.28em] text-[#3A5340]">
+            <p className="mt-6 font-serif text-base text-[#6F8F74]">{COUPLE.dateLabel}</p>
+            <span className="mt-9 inline-block rounded-sm bg-[#2F4634] px-9 py-3 font-serif text-sm uppercase tracking-[0.28em] text-[#F7FAF4]">
               Abrir
             </span>
           </div>
         </div>
       </button>
-    </motion.div>
+    </motion.div>,
+    document.body,
   );
 }

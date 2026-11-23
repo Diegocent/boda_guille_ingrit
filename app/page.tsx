@@ -33,11 +33,11 @@ export default function HomePage() {
   }, [opened]);
 
   return (
-    <main className="min-h-screen bg-[#E7EEE6]">
-      <div className="relative z-0 mx-auto min-h-screen max-w-md overflow-hidden bg-[#F8FBF7] shadow-2xl sm:min-h-[100dvh]">
+    <main className="min-h-screen bg-[#E4EDE2]">
+      <div className="relative z-0 mx-auto min-h-screen max-w-md overflow-hidden bg-[#F7FAF4] shadow-2xl sm:min-h-[100dvh]">
         <Invitation />
-        <EnvelopeOverlay onOpened={() => setOpened(true)} />
       </div>
+      <EnvelopeOverlay onOpened={() => setOpened(true)} />
     </main>
   );
 }
