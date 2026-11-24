@@ -9,6 +9,7 @@ import {
   ITINERARY,
   MESSAGE,
   VENUE,
+  VERSE,
   WEDDING_DATE,
 } from "@/lib/constants";
 import {
@@ -120,9 +121,13 @@ function MessageBand() {
         <p className="font-serif text-[11px] uppercase tracking-[0.34em] text-[#4F6F52]">
           Con cariño
         </p>
-        <p className="mx-auto mt-8 max-w-sm font-script text-[2.15rem] leading-snug text-[#2F4634]">
+        <p className="mx-auto mt-8 max-w-sm font-serif text-lg leading-relaxed text-[#2F4634]">
           {MESSAGE}
         </p>
+        <p className="mx-auto mt-10 max-w-sm font-script text-[1.85rem] leading-snug text-[#4F6F52]">
+          «{VERSE.text}»
+        </p>
+        <p className="mt-5 font-serif text-sm tracking-wide text-[#6F8F74]">{VERSE.reference}</p>
       </Reveal>
     </section>
   );
@@ -252,7 +257,7 @@ function Venue() {
         <h2 className="font-serif text-sm uppercase tracking-[0.32em] text-[#4F6F52]">Lugar</h2>
         <p className="mt-6 font-script text-5xl text-[#2F4634]">{VENUE.place}</p>
         <p className="mx-auto mt-5 max-w-xs font-serif text-base leading-relaxed text-[#6F8F74]">
-          Ceremonia civil y religiosa en el mismo sitio.
+          Civil y bendición en el mismo sitio.
         </p>
       </Reveal>
       <Reveal delay={0.12} className="mt-10">
@@ -315,6 +320,7 @@ function Gifts() {
             {GIFT.aliasLabel}
           </p>
           <p className="mt-3 break-all font-serif text-2xl text-[#2F4634]">{GIFT.alias}</p>
+          <p className="mt-2 font-serif text-base text-[#6F8F74]">{GIFT.holder}</p>
         </div>
       </Reveal>
     </section>

@@ -20,19 +20,25 @@ export const VENUE = {
 export const ITINERARY = [
   { time: "20:00", label: "Inicio" },
   { time: "20:30", label: "Boda civil" },
-  { time: "21:00", label: "Boda religiosa" },
+  { time: "21:00", label: "Bendición" },
   { time: "22:00", label: "Cena" },
   { time: "23:00", label: "Fiesta" },
 ] as const;
 
 export const GIFT = {
   aliasLabel: "Alias bancario",
-  alias: "ALIAS.A.CONFIRMAR",
+  alias: "0971547409",
+  holder: "Guillermo Gill",
   note: "Si desean hacernos un regalo, pueden transferir a este alias.",
 };
 
 export const MESSAGE =
-  "Hay días que se guardan para siempre. Nos haría muy felices compartir este con ustedes, con la gente que queremos cerca.";
+  "Dios escribió nuestra historia y hoy nos regala la alegría de unir nuestras vidas. Queremos compartir esta bendición con las personas que tanto amamos.";
+
+export const VERSE = {
+  text: "A dondequiera que tú fueres, iré yo, y dondequiera que vivieres, viviré. Tu pueblo será mi pueblo, y tu Dios mi Dios.",
+  reference: "Rut 1:16",
+};
 
 export const CALENDAR_URL =
   "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Guillermo+e+Ingrit&dates=20261219T200000/20261220T020000&details=Boda+en+Quinta+Las+Palmeras&location=Quinta+Las+Palmeras";
